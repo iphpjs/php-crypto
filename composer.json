@@ -1,0 +1,16 @@
+{
+    "name": "suse/php-crypto",
+    "description": "php crypto",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "NetworkRanger",
+            "email": "admin@iphpjs.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "laravel/helpers": "^1.1"
+    }
+}
