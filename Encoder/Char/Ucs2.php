@@ -8,20 +8,21 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Iphpjs\Code;
 
-use Iphpjs\Contract\CodeInterface;
+namespace Iphpjs\Encoder\Char;
 
-class Hex implements CodeInterface
+use Iphpjs\Contract\EncoderInterface;
+
+class Ucs2 implements EncoderInterface
 {
 
     public function encode(string $string): string
     {
-        return \bin2hex($string);
+        return iconv('UTF-8', 'UCS-2', $string);
     }
 
     public function decode(string $string): string
     {
-        return \hex2bin($string);
+        return iconv('UCS-2', 'UTF-8', $string);
     }
 }

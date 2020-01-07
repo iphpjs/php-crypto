@@ -8,20 +8,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Iphpjs\Encoder;
 
-namespace Iphpjs\Code;
+use Iphpjs\Contract\EncoderInterface;
 
-use Iphpjs\Contract\CodeInterface;
-
-class Base64 implements CodeInterface
+class Hex implements EncoderInterface
 {
+
     public function encode(string $string): string
     {
-        return \base64_encode($string);
+        return \bin2hex($string);
     }
 
     public function decode(string $string): string
     {
-        return \base64_decode($string);
+        return \hex2bin($string);
     }
 }

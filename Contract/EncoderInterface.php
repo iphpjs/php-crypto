@@ -11,7 +11,7 @@
 
 namespace Iphpjs\Contract;
 
-interface CodeInterface
+interface EncoderInterface
 {
     public function encode(string $string): string;
 

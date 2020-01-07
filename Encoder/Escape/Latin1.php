@@ -9,26 +9,25 @@
  * file that was distributed with this source code.
  */
 
-namespace Iphpjs\Code;
+namespace Iphpjs\Encoder\Escape;
 
-use Iphpjs\Contract\CodeInterface;
+use Iphpjs\Contract\EncoderInterface;
 
-class Unicode implements CodeInterface
+class Latin1 implements EncoderInterface
 {
     public function encode(string $string): string
     {
-        preg_match_all('/./u', $string, $matches);
+        \preg_match_all('/./', $string, $matches);
 
         $str = '';
         foreach ($matches[0] as $m) {
-            $str .= '\u' . \substr(\bin2hex(\iconv('UTF-8', 'UCS-4', $m)), 4);
+            $str .= '\x' . bin2hex($m);
         }
         return $str;
     }
 
     public function decode(string $string): string
     {
-        $str = sprintf('{"decode": "%s"}', '\u4f60');
-        return \json_decode($str, true)['decode'];
+        return hex2bin(\str_replace('\x', '', $string));
     }
 }

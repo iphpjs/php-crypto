@@ -9,12 +9,13 @@
  * file that was distributed with this source code.
  */
 
-use Iphpjs\Code\Unicode;
+
+use Iphpjs\Encoder\Escape\Unicode;
 
 require __DIR__ . '/../vendor/autoload.php';
 
 spl_autoload_register(function ($class) {
-    $filename = dirname(__DIR__) . '/Code/' . studly_case(class_basename($class)) . '.php';
+    $filename = dirname(__DIR__) . str_replace('\\', '/', substr($class, strpos($class, '\\'))) . '.php';
     if (file_exists($filename)) {
         require $filename;
         return;
@@ -26,12 +27,14 @@ spl_autoload_register(function ($class) {
     }
 });
 
-$str = '1你好吗';
+$str = '1你好吗?';
 
-echo json_encode($str),PHP_EOL;
+echo json_encode($str), PHP_EOL;
 
 $u = new Unicode();
-echo $u->encode($str), PHP_EOL;
+$a = $u->encode($str);
+$b = $u->decode($a);
+echo $a, PHP_EOL;
 
 //
 //echo ord($str[0]),PHP_EOL;

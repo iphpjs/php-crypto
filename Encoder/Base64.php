@@ -8,20 +8,20 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Iphpjs\Code;
 
-use Iphpjs\Contract\CodeInterface;
+namespace Iphpjs\Encoder;
 
-class RawUrl implements CodeInterface
+use Iphpjs\Contract\EncoderInterface;
+
+class Base64 implements EncoderInterface
 {
-
     public function encode(string $string): string
     {
-        return \rawurlencode($string);
+        return \base64_encode($string);
     }
 
     public function decode(string $string): string
     {
-        return \rawurldecode($string);
+        return \base64_decode($string);
     }
 }

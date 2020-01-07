@@ -8,19 +8,21 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Iphpjs\Code;
 
-use Iphpjs\Contract\CodeInterface;
+namespace Iphpjs\Encoder\Char;
 
-class HtmlSpecial implements CodeInterface{
+use Iphpjs\Contract\EncoderInterface;
+
+class Utf8 implements EncoderInterface
+{
 
     public function encode(string $string): string
     {
-        return \htmlspecialchars($string);
+        return $string;
     }
 
     public function decode(string $string): string
     {
-        return \htmlspecialchars_decode($string);
+        return $string;
     }
 }
